@@ -1,5 +1,5 @@
 {
-  "name": "Hello World Card",
+  "name": "Hello World JSON",
   "content_in_root": true,
-  "render_readme": true
+  "filename": "hello.json"
 }
