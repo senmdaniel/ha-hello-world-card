@@ -1,7 +1,6 @@
 {
   "name": "Hello World Card",
-  "content_in_root": false,
-  "country": "BE",
-  "homeassistant": "2022.0.0",
-  "render_readme": true
+  "content_in_root": true,
+  "render_readme": true,
+  "domain": "hello_world"
 }
