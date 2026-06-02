@@ -1,10 +1,11 @@
 class HelloWorldCard extends HTMLElement {
   setConfig(config) {
     this.attachShadow({ mode: "open" });
+
     this.shadowRoot.innerHTML = `
       <ha-card header="Hello World">
         <div style="padding: 16px;">
-          👋 Hello World from HACS
+          👋 hoi Wereldje
         </div>
       </ha-card>
     `;
@@ -18,5 +19,6 @@ customElements.define("hello-world-card", HelloWorldCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: "hello-world-card",
-  name: "Hello World Card"
+  name: "Hello World Card",
+  description: "Test card"
 });
