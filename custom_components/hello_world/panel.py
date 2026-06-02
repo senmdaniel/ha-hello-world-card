@@ -10,5 +10,4 @@ async def async_setup_panel(hass):
         config={
             "url": "https://example.org"
         },
-        require_admin=False,
     )
