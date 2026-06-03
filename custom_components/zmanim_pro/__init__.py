@@ -11,20 +11,22 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-# Vertel Home Assistant dat we SENSOR-entiteiten hebben
 PLATFORMS = [Platform.SENSOR]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Zet de integratie klaar via een UI Config Entry."""
-    # Registreer direct de onbeveiligde browser-link
+async def async_setup(hass: HomeAssistant, config: dict) -> bool:
+    """Dit start ALTIJD direct op bij de boot van Home Assistant."""
+    # Registreer de HTTP-view direct op het allerhoogste niveau!
+    # Dit zorgt ervoor dat /api/zmanim ALTIJD direct herkend wordt zonder 404.
     hass.http.register_view(ZmanimApiView(hass))
-    
-    # Start de sensoren op (dit vervangt de oude configuration.yaml methode)
+    return True
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Zet de integratie klaar zodra de UI flow is voltooid."""
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Zorg voor een schone afsluiting als de integratie wordt verwijderd."""
+    """Zorg voor een schone afsluiting."""
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
 
 
